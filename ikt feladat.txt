@@ -1,0 +1,33 @@
+grafikus felületen
+objektum orientáltan
+Black Jack vagy Rulett 
+
+kell:
+-rogramleírás(specifikáció)
+	szabályok
+	mik a feltételek
+-Program adatok
+-algoritmusok (folyamat ábra)
+- Forrás
+	játék szabályzat 
+-kód
+-Teszt esetek(fájl)
+	pl
+-Dokumentáció
+	felhasználói 
+	programozói
+
+Black Jack:
+max 6 játékos
+(osztó bele tartozik a 6-ba)
+
+Rulett:
+max 6 játékos
+
+(Márk gondolat: Szabályzat gomb-ra kattintva elő jön egy ablak(MessageBox) és az ki írja a szabályokat, OK gombra kattintva vissza ugrik a fő ablakra
+		label-ben fix kezdési összeg pl.: 1000ft (nem lehet át írni és mindig aktív)
+		label-be összeg megadása és gombra kattintva tét tevés a fix összegből vonja le, ha megnyeri akkor az adott tét szorzójával adjon vissza összeget a fix 		összeghez ha elveszíti akkor ne adjon vissza semmit és legyen újra választási lehetősége, hogy játszani akar még a megmaradt összegből vagy kilép)
+
+jan.6ig kell-> programleírás, program adatok, algoritmusok (PDF-ben)
+jan.15 kell -> kód, teszt eset(c# kód, teszt esethez minden)
+jan.23 kell legkésőbb -> Dokumentáció(PDF)
