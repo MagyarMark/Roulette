@@ -16,15 +16,12 @@ namespace MM_BM_Roulette
         TextBox txtMoney = new TextBox();
         Button btnBet = new Button();
         Button btnNull = new Button();
-        Button WinOrLose = new Button();
+        Label lblWin = new Label();
         Panel panel1 = new Panel();
         Panel panel2 = new Panel();
         public Form1()
         {
             InitializeComponent();
-            this.Text = "Rulett";
-            this.Icon = new Icon("favicon.ico");//kép: https://www.flaticon.com/free-icon/roulette_218417
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,7 +30,6 @@ namespace MM_BM_Roulette
             fixmoney.Location = new Point(35, 10);
             fixmoney.Size = new Size(200, 20);
             fixmoney.Enabled = false;
-            fixmoney.TextAlign = HorizontalAlignment.Center;
             fixmoney.Font = new Font(txtMoney.Font, FontStyle.Bold);
             this.Controls.Add(fixmoney);
 
@@ -41,6 +37,7 @@ namespace MM_BM_Roulette
             txtMoney.Location = new Point(35, 40);
             txtMoney.Size = new Size(200, 20);
             txtMoney.BackColor = Color.Gray;
+            txtMoney.Font = new Font(txtMoney.Font, FontStyle.Bold);
             txtMoney.TextAlign = HorizontalAlignment.Center;
             this.Controls.Add(txtMoney);
 
@@ -50,21 +47,16 @@ namespace MM_BM_Roulette
             btnBet.BackColor = Color.Green;
             btnBet.TextAlign = ContentAlignment.MiddleCenter;
             btnBet.Font = new Font(btnBet.Font, FontStyle.Bold);
-            btnBet.ForeColor = ColorTranslator.FromHtml("#ffffff");
             btnBet.Click += new EventHandler(btnBet_Click);
             this.Controls.Add(btnBet);
+            lblWin.Text = "0";
 
             btnNull.Text = "0";
             btnNull.Location = new Point(270, 270);
             btnNull.Size = new Size(50, 130);
             btnNull.BackColor = Color.Green;
-            btnNull.ForeColor = ColorTranslator.FromHtml("#ffffff");
             this.Controls.Add(btnNull);
 
-            WinOrLose.Text = "";
-            WinOrLose.Visible = false;
-            WinOrLose.Click += new EventHandler(winorlose_Click);
-            this.Controls.Add(WinOrLose);
             
             panel1.Dock = DockStyle.Left;
             panel1.BackColor = ColorTranslator.FromHtml("#08121A");
@@ -77,41 +69,9 @@ namespace MM_BM_Roulette
             this.Controls.Add(panel2);
         }
 
-        private void winorlose_Click(object sender, EventArgs e)
-        {
-            /*
-             win = ha nyert a ruletten
-             lose = ha vesztett a ruletten
-             Eredmény kiíratás MessageBox-ban
-            */
-            WinOrLose.Visible = true;
-        }
         private void btnBet_Click(object sender, EventArgs e)
         {
-            var moneyText = fixmoney.Text.Replace("Money: ", "");
-            if (!int.TryParse(moneyText, out int Money))
-            {
-                MessageBox.Show("Hiba történt az aktuális pénz kiolvasásakor.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // txtmoney ellenőrzese
-            if (!int.TryParse(txtMoney.Text, out int BetOsszeg) || BetOsszeg <= 0)
-            {
-                MessageBox.Show("Kérjük, adjon meg egy érvényes tétösszeget!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Összeg ellenőrzése
-            if (BetOsszeg > Money)
-            {
-                MessageBox.Show("A megadott összeg több mint amennyi pénzed van", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                Money -= BetOsszeg;//Megadott összeget kivonja a fix összegből
-                fixmoney.Text = $"Money: {Money}";
-            }
+            
         }
     }
 }
