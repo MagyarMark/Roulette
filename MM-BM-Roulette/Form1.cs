@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,8 +19,12 @@ namespace MM_BM_Roulette
         Button btnNull = new Button();
         Button button = new Button();
         Button zeroButton = new Button();
+        Button Szabaly = new Button();
         Panel panel1 = new Panel();
         Panel panel2 = new Panel();
+
+        public static int BetOsszeg = 0;
+        public static int Money = 0;
         public Form1()
         {
             InitializeComponent();
@@ -27,6 +32,8 @@ namespace MM_BM_Roulette
             this.Text = "Rulett";
             this.Icon = new Icon("favicon.ico");//kép: https://www.flaticon.com/free-icon/roulette_218417
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
         private void CreateMatrix()
         {
@@ -34,14 +41,14 @@ namespace MM_BM_Roulette
             string[,] numbers = new string[,]
             {
                 { "", "", "", "", "", "", "", "", "", "", "", "", "" },
-                { "", "3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36" },
+                { "0", "3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36" },
                 { "", "2", "5", "8", "11", "14", "17", "20", "23", "26", "29", "32", "35" },
                 { "", "1", "4", "7", "10", "13", "16", "19", "22", "25", "28", "31", "34" }
             };
 
             // méretek
-            int rows = numbers.GetLength(0);
-            int cols = numbers.GetLength(1);
+            int Oszlopok = numbers.GetLength(0);
+            int Sorok = numbers.GetLength(1);
 
             // elhelyési érték 
             int startX = 270;
@@ -54,38 +61,41 @@ namespace MM_BM_Roulette
             Color redColor = Color.Red;
             Color blackColor = Color.Black;
 
-            zeroButton = new Button();
-            zeroButton.Size = new Size(55,150);
-            zeroButton.Location = new Point(260, 300);
-            zeroButton.Text = "0";
-            zeroButton.Font = new Font("Microsoft Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            zeroButton.TextAlign = ContentAlignment.MiddleCenter;
-            zeroButton.BackColor = greenColor;
-            zeroButton.ForeColor = Color.White;
-            Controls.Add(zeroButton);
-
-            for (int row = 0; row < rows; row++)
+            for (int Oszlop = 0; Oszlop < Oszlopok; Oszlop++)
             {
-                for (int col = 0; col < cols; col++)
+                for (int Sor = 0; Sor < Sorok; Sor++)
                 {
                     // ellenörzi a mátrix celláját(van-e benne érték)
-                    if (!string.IsNullOrEmpty(numbers[row, col]))
+                    if (!string.IsNullOrEmpty(numbers[Oszlop, Sor]))
                     {
+
+                        zeroButton = new Button();
+                        zeroButton.Size = new Size(60, 150);
+                        zeroButton.Location = new Point(260, 300);
+                        zeroButton.Text = numbers[Oszlop, Sor];
+                        zeroButton.Font = new Font("Microsoft Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                        zeroButton.FlatStyle = FlatStyle.Popup;
+                        zeroButton.TextAlign = ContentAlignment.MiddleCenter;
+                        zeroButton.BackColor = greenColor;
+                        zeroButton.ForeColor = Color.White;
+                        Controls.Add(zeroButton);
+
                         //gomb újra meghívása és állítása
                         button = new Button();
                         button.Size = new Size(buttonWidth, buttonHeight);
-                        button.Location = new Point(startX + col * buttonWidth, startY + row * buttonHeight);
-                        button.Text = numbers[row, col];
+                        button.Location = new Point(startX + Sor * buttonWidth, startY + Oszlop * buttonHeight);
+                        button.Text = numbers[Oszlop, Sor];
+                        button.FlatStyle = FlatStyle.Popup;
                         button.Font = new Font("Microsoft Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
                         button.TextAlign = ContentAlignment.MiddleCenter;
 
                         // színezések
-                        if (row == 0 && col == 0) //a 0-ás gomb zöld
+                        if (Oszlop == 0 && Sor == 0 && Sorok == 0 && Oszlopok == 0) //a 0-ás gomb zöld
                         {
                             button.BackColor = greenColor;
                             button.ForeColor = Color.White;
                         }
-                        else if (row > 0 && (int.Parse(numbers[row, col]) % 2 == 0))//minden 2-vel osztható szám piros lesz
+                        else if (Oszlop > 0 && (int.Parse(numbers[Oszlop, Sor]) % 2 == 0))//minden 2-vel osztható szám piros lesz
                         {
                             button.BackColor = redColor;
                             button.ForeColor = Color.White;
@@ -95,10 +105,14 @@ namespace MM_BM_Roulette
                             button.BackColor = blackColor;
                             button.ForeColor = Color.White;
                         }
-
-                        //meghívás a button click-re
-                        button.Click += new EventHandler(button_Click);
                         
+                        //meghívás a button click-re
+                        button.Click += (sender, e) =>
+                        {
+                            Button clickedButton = (Button)sender;
+                            Money -= BetOsszeg;
+                            MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{clickedButton.Text}");
+                        };
                         //hozzáadás ablakhoz
                         Controls.Add(button);
                     }
@@ -124,6 +138,7 @@ namespace MM_BM_Roulette
             this.Controls.Add(txtMoney);
 
             btnBet.Text = "Bet";
+            btnBet.FlatStyle = FlatStyle.Popup;
             btnBet.Location = new Point(35, 70);
             btnBet.Size = new Size(200, 30);
             btnBet.BackColor = Color.Green;
@@ -132,6 +147,18 @@ namespace MM_BM_Roulette
             btnBet.ForeColor = ColorTranslator.FromHtml("#ffffff");
             btnBet.Click += new EventHandler(btnBet_Click);
             this.Controls.Add(btnBet);
+
+            Szabaly.Text = "i";
+            Szabaly.FlatStyle = FlatStyle.Popup;
+            Szabaly.Location = new Point(8, 10);
+            Szabaly.Size = new Size(20, 90);
+            Szabaly.BackColor = Color.Blue;
+            Szabaly.TextAlign = ContentAlignment.MiddleCenter;  // Szöveg középre igazítása
+            Szabaly.Font = new Font(Szabaly.Font.FontFamily, 20, FontStyle.Bold);
+            Szabaly.ForeColor = ColorTranslator.FromHtml("#ffffff");
+            Szabaly.Click += new EventHandler(Szabaly_Click);
+            this.Controls.Add(Szabaly);
+
 
             panel1.Dock = DockStyle.Left;
             panel1.BackColor = ColorTranslator.FromHtml("#08121A");
@@ -143,46 +170,19 @@ namespace MM_BM_Roulette
             panel2.Size = new Size(250, this.Height);
             this.Controls.Add(panel2);
         }
-
-        private void button_Click(object sender, EventArgs e)
-        {
-            var moneyText = fixmoney.Text.Replace("Money: ", "");
-            if (!int.TryParse(moneyText, out int Money))
-            {
-                MessageBox.Show("Hiba történt az aktuális pénz kiolvasásakor.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // txtmoney ellenőrzese
-            if (!int.TryParse(txtMoney.Text, out int BetOsszeg) || BetOsszeg <= 0)
-            {
-                MessageBox.Show("Kérjük, adjon meg egy érvényes tétösszeget!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Összeg ellenőrzése
-            if (BetOsszeg > Money)
-            {
-                MessageBox.Show("A megadott összeg több mint amennyi pénzed van", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                Money -= BetOsszeg;//Megadott összeget kivonja a fix összegből
-                fixmoney.Text = $"Money: {Money}";
-                MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{button.Text}");
-            }
-        }
         private void btnBet_Click(object sender, EventArgs e)
         {
+            var BetOsszeg = 0;
+            var Money = 0;
             var moneyText = fixmoney.Text.Replace("Money: ", "");
-            if (!int.TryParse(moneyText, out int Money))
+            if (!int.TryParse(moneyText, out Money))
             {
                 MessageBox.Show("Hiba történt az aktuális pénz kiolvasásakor.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // txtmoney ellenőrzese
-            if (!int.TryParse(txtMoney.Text, out int BetOsszeg) || BetOsszeg <= 0)
+            if (!int.TryParse(txtMoney.Text, out BetOsszeg) || BetOsszeg <= 0)
             {
                 MessageBox.Show("Kérjük, adjon meg egy érvényes tétösszeget!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -197,6 +197,22 @@ namespace MM_BM_Roulette
             {
                 Money -= BetOsszeg;//Megadott összeget kivonja a fix összegből
                 fixmoney.Text = $"Money: {Money}";
+            }
+        }
+
+        private void Szabaly_Click(object sender, EventArgs e)
+        {   
+            Szabaly.Text = "i";
+            var felirat = Szabaly.Text.Replace("Szabályzat: \n ", "");
+            if (Szabaly.Text == "i")
+            {
+                Szabaly.Text = "i";
+                MessageBox.Show("Szabályzat: \n ", "Alap Szabályzat", MessageBoxButtons.OK);
+            }
+            if (MessageBoxButtons.OK == MessageBoxButtons.OK)
+            {
+                Szabaly.Text = "i";
+                MessageBox.Show("Esélyek: \n ", "Nyerési Esélyek",MessageBoxButtons.OK);
             }
         }
     }
