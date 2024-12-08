@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Security.Policy;
@@ -20,22 +21,24 @@ namespace MM_BM_Roulette
         Button button = new Button();
         Button zeroButton = new Button();
         Button Szabaly = new Button();
+        Button clickedButton = new Button();
         Panel panel1 = new Panel();
         Panel panel2 = new Panel();
 
         public static int BetOsszeg = 0;
         public static int Money = 0;
+        public static bool gomb = false;
         public Form1()
         {
             InitializeComponent();
-            CreateMatrix();
+            SzamMatrix();
             this.Text = "Rulett";
             this.Icon = new Icon("favicon.ico");//kép: https://www.flaticon.com/free-icon/roulette_218417
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
         }
-        private void CreateMatrix()
+        private void SzamMatrix()
         {
             // szám mátrix felvétele
             string[,] numbers = new string[,]
@@ -109,9 +112,12 @@ namespace MM_BM_Roulette
                         //meghívás a button click-re
                         button.Click += (sender, e) =>
                         {
-                            Button clickedButton = (Button)sender;
-                            Money -= BetOsszeg;
-                            MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{clickedButton.Text}");
+                           clickedButton = (Button)sender;
+                           gomb = true;
+                           btnBet_Click(sender, e);
+                           /*Money -= BetOsszeg;
+                           MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{clickedButton.Text}");*/
+
                         };
                         //hozzáadás ablakhoz
                         Controls.Add(button);
@@ -146,6 +152,7 @@ namespace MM_BM_Roulette
             btnBet.Font = new Font(btnBet.Font, FontStyle.Bold);
             btnBet.ForeColor = ColorTranslator.FromHtml("#ffffff");
             btnBet.Click += new EventHandler(btnBet_Click);
+            btnBet.Enabled = false;
             this.Controls.Add(btnBet);
 
             Szabaly.Text = "i";
@@ -159,12 +166,13 @@ namespace MM_BM_Roulette
             Szabaly.Click += new EventHandler(Szabaly_Click);
             this.Controls.Add(Szabaly);
 
-
+            //panel bal oldal szín beállítás
             panel1.Dock = DockStyle.Left;
             panel1.BackColor = ColorTranslator.FromHtml("#08121A");
             panel1.Size = new Size(this.Width, this.Height);
             this.Controls.Add(panel1);
 
+            //panel jobb oldal beállítás
             panel2.Dock = DockStyle.Left;
             panel2.BackColor = ColorTranslator.FromHtml("#213743");
             panel2.Size = new Size(250, this.Height);
@@ -172,7 +180,38 @@ namespace MM_BM_Roulette
         }
         private void btnBet_Click(object sender, EventArgs e)
         {
-            var BetOsszeg = 0;
+            if (gomb)
+            {
+                btnBet.Enabled = true;
+                var BetOsszeg = 0;
+                var Money = 0;
+                var moneyText = fixmoney.Text.Replace("Money: ", "");
+                if (!int.TryParse(moneyText, out Money))
+                {
+                    MessageBox.Show("Hiba történt az aktuális pénz kiolvasásakor.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // txtmoney ellenőrzese
+                if (!int.TryParse(txtMoney.Text, out BetOsszeg) || BetOsszeg <= 0)
+                {
+                    MessageBox.Show("Kérjük, adjon meg egy érvényes tétösszeget!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Összeg ellenőrzése
+                if (BetOsszeg > Money)
+                {
+                    MessageBox.Show("A megadott összeg több mint amennyi pénzed van", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    Money -= BetOsszeg;//Megadott összeget kivonja a fix összegből
+                    fixmoney.Text = $"Money: {Money}";
+                    MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{clickedButton.Text}");
+                }
+            }
+            /*var BetOsszeg = 0;
             var Money = 0;
             var moneyText = fixmoney.Text.Replace("Money: ", "");
             if (!int.TryParse(moneyText, out Money))
@@ -197,11 +236,13 @@ namespace MM_BM_Roulette
             {
                 Money -= BetOsszeg;//Megadott összeget kivonja a fix összegből
                 fixmoney.Text = $"Money: {Money}";
-            }
+            }*/
         }
 
         private void Szabaly_Click(object sender, EventArgs e)
-        {   
+        {
+            /*
+            string szoveg = "További információk";
             Szabaly.Text = "i";
             var felirat = Szabaly.Text.Replace("Szabályzat: \n ", "");
             if (Szabaly.Text == "i")
@@ -213,7 +254,7 @@ namespace MM_BM_Roulette
             {
                 Szabaly.Text = "i";
                 MessageBox.Show("Esélyek: \n ", "Nyerési Esélyek",MessageBoxButtons.OK);
-            }
+            }*/
         }
     }
 }
