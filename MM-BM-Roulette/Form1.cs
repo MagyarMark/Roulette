@@ -114,7 +114,7 @@ namespace MM_BM_Roulette
                         {
                            clickedButton = (Button)sender;
                            gomb = true;
-                           btnBet_Click(sender, e);
+                           BtnBet_Click(sender, e);
                            /*Money -= BetOsszeg;
                            MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{clickedButton.Text}");*/
 
@@ -151,8 +151,7 @@ namespace MM_BM_Roulette
             btnBet.TextAlign = ContentAlignment.MiddleCenter;
             btnBet.Font = new Font(btnBet.Font, FontStyle.Bold);
             btnBet.ForeColor = ColorTranslator.FromHtml("#ffffff");
-            btnBet.Click += new EventHandler(btnBet_Click);
-            btnBet.Enabled = false;
+            btnBet.Click += BtnBet_Click;
             this.Controls.Add(btnBet);
 
             Szabaly.Text = "i";
@@ -178,66 +177,74 @@ namespace MM_BM_Roulette
             panel2.Size = new Size(250, this.Height);
             this.Controls.Add(panel2);
         }
-        private void btnBet_Click(object sender, EventArgs e)
+        private void BtnBet_Click(object sender, EventArgs e)
         {
-            if (gomb)
+            if (!int.TryParse(txtMoney.Text, out int Megtettosszeg) || Megtettosszeg <= 0)
             {
-                btnBet.Enabled = true;
-                var BetOsszeg = 0;
-                var Money = 0;
-                var moneyText = fixmoney.Text.Replace("Money: ", "");
-                if (!int.TryParse(moneyText, out Money))
-                {
-                    MessageBox.Show("Hiba történt az aktuális pénz kiolvasásakor.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // txtmoney ellenőrzese
-                if (!int.TryParse(txtMoney.Text, out BetOsszeg) || BetOsszeg <= 0)
-                {
-                    MessageBox.Show("Kérjük, adjon meg egy érvényes tétösszeget!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Összeg ellenőrzése
-                if (BetOsszeg > Money)
-                {
-                    MessageBox.Show("A megadott összeg több mint amennyi pénzed van", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    Money -= BetOsszeg;//Megadott összeget kivonja a fix összegből
-                    fixmoney.Text = $"Money: {Money}";
-                    MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{clickedButton.Text}");
-                }
-            }
-            /*var BetOsszeg = 0;
-            var Money = 0;
-            var moneyText = fixmoney.Text.Replace("Money: ", "");
-            if (!int.TryParse(moneyText, out Money))
-            {
-                MessageBox.Show("Hiba történt az aktuális pénz kiolvasásakor.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Kérjük, adjon meg egy érvényes fogadási összeget.", "Hibás Bet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // txtmoney ellenőrzese
-            if (!int.TryParse(txtMoney.Text, out BetOsszeg) || BetOsszeg <= 0)
+            string moneyText = fixmoney.Text.Replace("Money: ", "");
+            if (!int.TryParse(moneyText, out int JelenlegiPenz))
             {
-                MessageBox.Show("Kérjük, adjon meg egy érvényes tétösszeget!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("\r\nNem sikerült lekérni a jelenlegi pénzt.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Összeg ellenőrzése
-            if (BetOsszeg > Money)
+            if (Megtettosszeg > JelenlegiPenz)
             {
-                MessageBox.Show("A megadott összeg több mint amennyi pénzed van", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nincs elég pénze a fogadás megtételéhez.", "Elégtelen pénzeszköz", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            JelenlegiPenz -= Megtettosszeg;
+
+            // Random spin logic
+            Random random = new Random();
+            int GySzam = random.Next(0, 37);
+
+            MessageBox.Show($"Győztes szám: {GySzam}", "Pörgetés eredménye", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if (clickedButton != null && int.TryParse(clickedButton.Text, out int KiSzam) && KiSzam == GySzam)
+            {
+                int Kifizetes = Megtettosszeg * 35;
+                JelenlegiPenz += Kifizetes;
+                MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                Money -= BetOsszeg;//Megadott összeget kivonja a fix összegből
-                fixmoney.Text = $"Money: {Money}";
-            }*/
+                MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            fixmoney.Text = $"Money: {JelenlegiPenz}";
         }
+        /*var BetOsszeg = 0;
+        var Money = 0;
+        var moneyText = fixmoney.Text.Replace("Money: ", "");
+        if (!int.TryParse(moneyText, out Money))
+        {
+            MessageBox.Show("Hiba történt az aktuális pénz kiolvasásakor.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        // txtmoney ellenőrzese
+        if (!int.TryParse(txtMoney.Text, out BetOsszeg) || BetOsszeg <= 0)
+        {
+            MessageBox.Show("Kérjük, adjon meg egy érvényes tétösszeget!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        // Összeg ellenőrzése
+        if (BetOsszeg > Money)
+        {
+            MessageBox.Show("A megadott összeg több mint amennyi pénzed van", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        else
+        {
+            Money -= BetOsszeg;//Megadott összeget kivonja a fix összegből
+            fixmoney.Text = $"Money: {Money}";
+        }*/
 
         private void Szabaly_Click(object sender, EventArgs e)
         {
