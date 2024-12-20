@@ -203,19 +203,15 @@ namespace MM_BM_Roulette
             // Random spin logic
             Random random = new Random();
             int GySzam = random.Next(0, 37);
-            int KiSzam;
-            int Kifizetes;
-
 
             MessageBox.Show($"Győztes szám: {GySzam}", "Pörgetés eredménye", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            if (clickedButton != null && int.TryParse(clickedButton.Text, out KiSzam) && KiSzam == GySzam)
+            if (clickedButton != null && int.TryParse(clickedButton.Text, out int KiSzam) && KiSzam == GySzam)
             {
-                Kifizetes = Megtettosszeg * 35;
+                int Kifizetes = Megtettosszeg * 35;
                 JelenlegiPenz += Kifizetes;
                 MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
             else
             {
                 MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
