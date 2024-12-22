@@ -41,7 +41,9 @@ namespace MM_BM_Roulette
         }
         private void SzamMatrix()
         {
-            
+            Color greenColor = Color.Green;
+            Color redColor = Color.Red;
+            Color blackColor = Color.Black;
             // szám mátrix felvétele
             string[,] numbers = new string[,]
             {
@@ -61,9 +63,7 @@ namespace MM_BM_Roulette
             int buttonHeight = 50;
 
             // Színek
-            Color greenColor = Color.Green;
-            Color redColor = Color.Red;
-            Color blackColor = Color.Black;
+            
             
 
             for (int Oszlop = 0; Oszlop < Oszlopok; Oszlop++)
@@ -92,14 +92,6 @@ namespace MM_BM_Roulette
                         button.FlatStyle = FlatStyle.Popup;
                         button.Font = new Font("Microsoft Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
                         button.TextAlign = ContentAlignment.MiddleCenter;
-                        
-                        piros = new Button();
-                        piros.Size = new Size(100, 60);
-                        piros.FlatStyle = FlatStyle.Popup;
-                        piros.Location = new Point(520, 450);
-                        piros.BackColor = redColor; 
-                        piros.ForeColor = Color.Red;
-                        Controls.Add(piros);
 
                         // színezések
                         if (Oszlop == 0 && Sor == 0 && Sorok == 0 && Oszlopok == 0) //a 0-ás gomb zöld
@@ -124,12 +116,18 @@ namespace MM_BM_Roulette
                            clickedButton = (Button)sender;
                            gomb = true;
                            BtnBet_Click(sender, e);
-                            
                            /*Money -= BetOsszeg;
                            MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{clickedButton.Text}");*/
 
                         };
-                       
+                        piros = new Button();
+                        piros.Size = new Size(150, 60);
+                        piros.FlatStyle = FlatStyle.Popup;
+                        piros.Location = new Point(320, 300);
+                        piros.BackColor = redColor; 
+                        piros.ForeColor = Color.Red;
+
+                        Controls.Add(piros);
                         //hozzáadás ablakhoz
                         Controls.Add(button);
                     }
@@ -226,10 +224,12 @@ namespace MM_BM_Roulette
                 JelenlegiPenz += Kifizetes;
                 MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            
             else
             {
                 MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
             fixmoney.Text = $"Money: {JelenlegiPenz}";
         }
         /*var BetOsszeg = 0;

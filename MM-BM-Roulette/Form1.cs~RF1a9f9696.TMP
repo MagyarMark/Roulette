@@ -22,7 +22,6 @@ namespace MM_BM_Roulette
         Button zeroButton = new Button();
         Button Szabaly = new Button();
         Button clickedButton = new Button();
-        Button piros = new Button();
         Panel panel1 = new Panel();
         Panel panel2 = new Panel();
 
@@ -41,15 +40,15 @@ namespace MM_BM_Roulette
         }
         private void SzamMatrix()
         {
-            
             // szám mátrix felvétele
             string[,] numbers = new string[,]
             {
                 { "", "", "", "", "", "", "", "", "", "", "", "", "" },
-                { "", "3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36" },
-                { "0", "2", "5", "8", "11", "14", "17", "20", "23", "26", "29", "32", "35" },
+                { "0", "3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36" },
+                { "", "2", "5", "8", "11", "14", "17", "20", "23", "26", "29", "32", "35" },
                 { "", "1", "4", "7", "10", "13", "16", "19", "22", "25", "28", "31", "34" }
             };
+
             // méretek
             int Oszlopok = numbers.GetLength(0);
             int Sorok = numbers.GetLength(1);
@@ -64,7 +63,6 @@ namespace MM_BM_Roulette
             Color greenColor = Color.Green;
             Color redColor = Color.Red;
             Color blackColor = Color.Black;
-            
 
             for (int Oszlop = 0; Oszlop < Oszlopok; Oszlop++)
             {
@@ -83,6 +81,7 @@ namespace MM_BM_Roulette
                         zeroButton.TextAlign = ContentAlignment.MiddleCenter;
                         zeroButton.BackColor = greenColor;
                         zeroButton.ForeColor = Color.White;
+                        Controls.Add(zeroButton);
 
                         //gomb újra meghívása és állítása
                         button = new Button();
@@ -92,14 +91,6 @@ namespace MM_BM_Roulette
                         button.FlatStyle = FlatStyle.Popup;
                         button.Font = new Font("Microsoft Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
                         button.TextAlign = ContentAlignment.MiddleCenter;
-                        
-                        piros = new Button();
-                        piros.Size = new Size(100, 60);
-                        piros.FlatStyle = FlatStyle.Popup;
-                        piros.Location = new Point(520, 450);
-                        piros.BackColor = redColor; 
-                        piros.ForeColor = Color.Red;
-                        Controls.Add(piros);
 
                         // színezések
                         if (Oszlop == 0 && Sor == 0 && Sorok == 0 && Oszlopok == 0) //a 0-ás gomb zöld
@@ -124,12 +115,10 @@ namespace MM_BM_Roulette
                            clickedButton = (Button)sender;
                            gomb = true;
                            BtnBet_Click(sender, e);
-                            
                            /*Money -= BetOsszeg;
                            MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{clickedButton.Text}");*/
 
                         };
-                       
                         //hozzáadás ablakhoz
                         Controls.Add(button);
                     }
@@ -226,10 +215,12 @@ namespace MM_BM_Roulette
                 JelenlegiPenz += Kifizetes;
                 MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            
             else
             {
                 MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
             fixmoney.Text = $"Money: {JelenlegiPenz}";
         }
         /*var BetOsszeg = 0;
@@ -261,7 +252,7 @@ namespace MM_BM_Roulette
 
         private void Szabaly_Click(object sender, EventArgs e)
         {
-            
+            /*
             string szoveg = "További információk";
             Szabaly.Text = "i";
             var felirat = Szabaly.Text.Replace("Szabályzat: \n ", "");
@@ -274,7 +265,7 @@ namespace MM_BM_Roulette
             {
                 Szabaly.Text = "i";
                 MessageBox.Show("Esélyek: \n ", "Nyerési Esélyek",MessageBoxButtons.OK);
-            }
+            }*/
         }
     }
 }
