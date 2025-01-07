@@ -264,6 +264,22 @@ namespace MM_BM_Roulette
                     MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+            else if (clickedButton != null && (piros.Text == clickedButton.Text || clickedButton.Text == fekete.Text))
+            {
+                string color = (GySzam == 0) ? "Zöld" : (GySzam % 2 == 0 ? "Fekete" : "Piros");
+
+                if (clickedButton.Text == color)
+                {
+                    Kifizetes = Megtettosszeg * 2;  // 2x szorzó a színre tett fogadásnál
+                    JelenlegiPenz += Kifizetes;
+                    MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
             fixmoney.Text = $"Money: {JelenlegiPenz}";
         }
         /*var BetOsszeg = 0;

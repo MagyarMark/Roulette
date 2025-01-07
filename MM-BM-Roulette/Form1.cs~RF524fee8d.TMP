@@ -17,7 +17,9 @@ namespace MM_BM_Roulette
         TextBox fixmoney = new TextBox();
         TextBox txtMoney = new TextBox();
         Button btnBet = new Button();
+        Button btnNull = new Button();
         Button button = new Button();
+        Button zeroButton = new Button();
         Button Szabaly = new Button();
         Button clickedButton = new Button();
         Button piros = new Button();
@@ -75,13 +77,24 @@ namespace MM_BM_Roulette
                     // ellenörzi a mátrix celláját(van-e benne érték)
                     if (!string.IsNullOrEmpty(numbers[Oszlop, Sor]))
                     {
+
+                        zeroButton = new Button();
+                        zeroButton.Size = new Size(60, 150);
+                        zeroButton.Location = new Point(260, 300);
+                        zeroButton.Text = numbers[Oszlop, Sor];
+                        zeroButton.Font = new Font("Microsoft Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                        zeroButton.FlatStyle = FlatStyle.Popup;
+                        zeroButton.TextAlign = ContentAlignment.MiddleCenter;
+                        zeroButton.BackColor = greenColor;
+                        zeroButton.ForeColor = Color.White;
+
                         //gomb újra meghívása és állítása
                         button = new Button();
                         button.Size = new Size(buttonWidth, buttonHeight);
                         button.Location = new Point(startX + Sor * buttonWidth, startY + Oszlop * buttonHeight);
                         button.Text = numbers[Oszlop, Sor];
                         button.FlatStyle = FlatStyle.Popup;
-                        button.Font = new Font(button.Font.FontFamily, 12);
+                        button.Font = new Font("Microsoft Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
                         button.TextAlign = ContentAlignment.MiddleCenter;
                         
                         piros = new Button();
@@ -138,7 +151,7 @@ namespace MM_BM_Roulette
                             button.Size = new Size(60, 150);
                             button.Location = new Point(260, 300);
                         }
-                        else if (numbers[Oszlop, Sor] == "3" || numbers[Oszlop, Sor] == "9" || numbers[Oszlop, Sor] == "12" || numbers[Oszlop, Sor] == "18" || numbers[Oszlop, Sor] == "21" || numbers[Oszlop, Sor] == "27" || numbers[Oszlop, Sor] == "30" || numbers[Oszlop, Sor] == "36" || numbers[Oszlop, Sor] == "5" || numbers[Oszlop, Sor] == "14" || numbers[Oszlop, Sor] == "23" || numbers[Oszlop, Sor] == "32" || numbers[Oszlop, Sor] == "1" || numbers[Oszlop, Sor] == "7" || numbers[Oszlop, Sor] == "16" || numbers[Oszlop, Sor] == "19" || numbers[Oszlop, Sor] == "25" || numbers[Oszlop, Sor] == "34")//piros gombok
+                        else if (numbers[Oszlop, Sor] == "3" && numbers[Oszlop, Sor] == "9" && numbers[Oszlop, Sor] == "12" && numbers[Oszlop, Sor] == "18" && numbers[Oszlop, Sor] == "21" && numbers[Oszlop, Sor] == "27" && numbers[Oszlop, Sor] == "30" && numbers[Oszlop, Sor] == "36" && numbers[Oszlop, Sor] == "5" && numbers[Oszlop, Sor] == "14" && numbers[Oszlop, Sor] == "23" && numbers[Oszlop, Sor] == "32" && numbers[Oszlop, Sor] == "1" && numbers[Oszlop, Sor] == "7" && numbers[Oszlop, Sor] == "16" && numbers[Oszlop, Sor] == "19" && numbers[Oszlop, Sor] == "25" && numbers[Oszlop, Sor] == "34")//piros gombok
                         {
                             button.BackColor = redColor;
                             button.ForeColor = Color.White;
@@ -251,18 +264,15 @@ namespace MM_BM_Roulette
 
             MessageBox.Show($"Győztes szám: {GySzam}", "Pörgetés eredménye", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            if (clickedButton != null && int.TryParse(clickedButton.Text, out KiSzam))
+            if (clickedButton != null && int.TryParse(clickedButton.Text, out KiSzam) && KiSzam == GySzam)
             {
-                if (KiSzam == GySzam)
-                {
-                    Kifizetes = Megtettosszeg * 35;  // 35x szorzó a számokra tett fogadásnál
-                    JelenlegiPenz += Kifizetes;
-                    MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                Kifizetes = Megtettosszeg * 35;
+                JelenlegiPenz += Kifizetes;
+                MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             fixmoney.Text = $"Money: {JelenlegiPenz}";
         }
