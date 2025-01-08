@@ -33,8 +33,21 @@
           "SelectedChildIndex": 2,
           "Children": [
             {
+<<<<<<< Updated upstream
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+=======
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\MagyarMark\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\MagyarMark\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Form1.Designer.cs",
+              "RelativeToolTip": "Form1.Designer.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAQwCUAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T10:51:24.612Z"
+>>>>>>> Stashed changes
             },
             {
               "$type": "Document",
@@ -56,7 +69,11 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
+<<<<<<< Updated upstream
               "ViewState": "AQIAABwBAAAAAAAAAAAwwCoBAAAyAAAA",
+=======
+              "ViewState": "AQIAABAAAAAAAAAAAAAqwCsAAAAMAAAA",
+>>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T10:49:26.484Z",
               "EditorCaption": ""
