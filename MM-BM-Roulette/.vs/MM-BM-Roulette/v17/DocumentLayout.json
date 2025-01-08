@@ -70,9 +70,13 @@
               "ToolTip": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               "ViewState": "AQIAABwBAAAAAAAAAAAwwCoBAAAyAAAA",
 =======
               "ViewState": "AQIAABAAAAAAAAAAAAAqwCsAAAAMAAAA",
+>>>>>>> Stashed changes
+=======
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADUBAABYAAAA",
 >>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T10:49:26.484Z",
@@ -100,8 +104,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAQwBIAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T10:51:20.15Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T10:51:20.15Z"
             },
             {
               "$type": "Document",
