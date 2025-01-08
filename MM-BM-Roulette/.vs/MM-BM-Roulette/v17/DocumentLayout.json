@@ -7,20 +7,20 @@
       "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,25 +33,12 @@
           "SelectedChildIndex": 2,
           "Children": [
             {
-<<<<<<< Updated upstream
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-=======
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\MagyarMark\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\MagyarMark\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Form1.Designer.cs",
-              "RelativeToolTip": "Form1.Designer.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAQwCUAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T10:51:24.612Z"
->>>>>>> Stashed changes
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Player.cs",
               "RelativeDocumentMoniker": "Player.cs",
@@ -59,7 +46,8 @@
               "RelativeToolTip": "Player.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T18:33:55.397Z"
+              "WhenOpened": "2024-12-22T18:33:55.397Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -69,15 +57,7 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-              "ViewState": "AQIAABwBAAAAAAAAAAAwwCoBAAAyAAAA",
-=======
-              "ViewState": "AQIAABAAAAAAAAAAAAAqwCsAAAAMAAAA",
->>>>>>> Stashed changes
-=======
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADUBAABYAAAA",
->>>>>>> Stashed changes
+              "ViewState": "AQIAAGUBAAAAAAAAAAAAAAwBAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T10:49:26.484Z",
               "EditorCaption": ""
@@ -92,11 +72,12 @@
               "RelativeToolTip": "Form1.Designer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T10:51:24.612Z"
+              "WhenOpened": "2024-12-04T10:51:24.612Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -104,18 +85,20 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAQwBIAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T10:51:20.15Z"
+              "WhenOpened": "2024-12-04T10:51:20.15Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM-BM-Roulette\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T10:49:10.512Z"
+              "WhenOpened": "2024-12-04T10:49:10.512Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

@@ -20,8 +20,6 @@ namespace MM_BM_Roulette
         Button button = new Button();
         Button Szabaly = new Button();
         Button clickedButton = new Button();
-        Button clickedPiros = new Button();
-        Button clickedFekete = new Button();
         Button piros = new Button();
         Button fekete = new Button();
         Button s1to12 = new Button();
@@ -162,29 +160,12 @@ namespace MM_BM_Roulette
                            MessageBox.Show($"Megtett összeg: {txtMoney.Text}\nSzám:{clickedButton.Text}");*/
 
                         };
-
-
-                        piros.Click += (sender, e) => 
-                        {
-                            clickedPiros = (Button)sender;
-                            gomb = true;
-                            BtnBet_Click(sender, e);
-                        };
-
-                        fekete.Click += (sender, e) => 
-                        {
-                            clickedFekete = (Button)sender;
-                            gomb = true;
-                            BtnBet_Click(sender, e);
-                        };
-
                        
                         //hozzáadás ablakhoz
                         Controls.Add(button);
                     }
                 }
             }
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -238,13 +219,6 @@ namespace MM_BM_Roulette
             panel2.Size = new Size(250, this.Height);
             this.Controls.Add(panel2);
         }
-
-        public bool IsRed(int number)
-        {
-            // Rulett piros mezők számai
-            int[] redNumbers = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
-            return Array.Exists(redNumbers, n => n == number);
-        }
         private void BtnBet_Click(object sender, EventArgs e)
         {
             if (!int.TryParse(txtMoney.Text, out int Megtettosszeg) || Megtettosszeg <= 0)
@@ -269,70 +243,27 @@ namespace MM_BM_Roulette
             JelenlegiPenz -= Megtettosszeg;
 
             // Random spin logic
-            Random SzamSzin = new Random();
-            int GySzam = SzamSzin.Next(0, 37);
-
-            string szin;
-            if (GySzam == 0)
-            {
-                szin = "ZÖLD";
-            }
-            else if (IsRed(GySzam))
-            {
-                szin = "PIROS";
-            }
-            else
-            {
-                szin = "FEKETE";
-            }
-
+            Random random = new Random();
+            int GySzam = random.Next(0, 37);
             int KiSzam;
-            int kiSzin;
             int Kifizetes;
 
 
-            MessageBox.Show($"Győztes szám: {GySzam}({szin})", "Pörgetés eredménye", MessageBoxButtons.OK, MessageBoxIcon.Information);
- 
+            MessageBox.Show($"Győztes szám: {GySzam}", "Pörgetés eredménye", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             if (clickedButton != null && int.TryParse(clickedButton.Text, out KiSzam))
             {
                 if (KiSzam == GySzam)
                 {
                     Kifizetes = Megtettosszeg * 35;  // 35x szorzó a számokra tett fogadásnál
                     JelenlegiPenz += Kifizetes;
-                    MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}\n Szám/szín: {GySzam}({szin})", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else if (KiSzam != GySzam)
+                else
                 {
                     MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-            
-
-
-
-            /*int megtettszam = int.Parse(clickedButton.Text);
-            
-            
-            if (!string.IsNullOrEmpty(szin)) // Ellenőrizzük, hogy nem üres vagy null
-            {
-                if (szin == clickedPiros.Text && GySzam == megtettszam)
-                {
-                    Kifizetes = Megtettosszeg * 2;  // 2x szorzó a színre tett fogadásnál
-                    JelenlegiPenz += Kifizetes;
-                    MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-
-            if (!string.IsNullOrEmpty(szin)) // Ellenőrizzük, hogy nem üres vagy null
-            {
-                if (szin == clickedFekete.Text)
-                {
-                    Kifizetes = Megtettosszeg * 2;  // 2x szorzó a színre tett fogadásnál
-                    JelenlegiPenz += Kifizetes;
-                    MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }*/
             fixmoney.Text = $"Money: {JelenlegiPenz}";
         }
         /*var BetOsszeg = 0;
