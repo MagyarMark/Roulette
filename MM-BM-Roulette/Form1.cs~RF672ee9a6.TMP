@@ -81,7 +81,7 @@ namespace MM_BM_Roulette
             btnSpin = new Button
             {
                 Text = "Pörgetés",
-                Location = new Point(20, 90),
+                Location = new Point(20, 100),
                 Size = new Size(200, 40),
                 Font = new Font("Arial", 12, FontStyle.Bold),
                 BackColor = Color.Green,
@@ -95,7 +95,7 @@ namespace MM_BM_Roulette
             lblResult = new Label
             {
                 Text = "Helyezd el a téted!",
-                Location = new Point(20, 140),
+                Location = new Point(20, 160),
                 Size = new Size(200, 30),
                 Font = new Font("Arial", 12, FontStyle.Bold),
                 BackColor = Color.White,
@@ -284,71 +284,139 @@ namespace MM_BM_Roulette
             int[] redNumbers = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
             return Array.Exists(redNumbers, n => n == number);
         }
-        private void SetBet(string type)
+        private void BtnBet_Click(object sender, EventArgs e)
         {
-            tet = type;
-            lblResult.Text = $"Tét elhelyezve: {type}";
-        }
-        private void BtnSpin_Click(object sender, EventArgs e)
-        {
-            if (!int.TryParse(txtBetAmount.Text, out JelenlegiTet) || JelenlegiTet <= 0)
+            
+
+            if (!int.TryParse(txtMoney.Text, out int Megtettosszeg) || Megtettosszeg <= 0)
             {
-                MessageBox.Show("Érvényes tétet adj meg!", "Érvénytelen tét", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Kérjük, adjon meg egy érvényes fogadási összeget.", "Hibás Bet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (JelenlegiTet > playerMoney)
+            string moneyText = fixmoney.Text.Replace("Money: ", "");
+            if (!int.TryParse(moneyText, out int JelenlegiPenz))
             {
-                MessageBox.Show("Nincs elég pénzed ehhez a fogadáshoz.", "Nincs elég pénz", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("\r\nNem sikerült lekérni a jelenlegi pénzt.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (string.IsNullOrEmpty(tet))
+            if (Megtettosszeg > JelenlegiPenz)
             {
-                MessageBox.Show("Helyezd el a téted a pörgetés előtt!", "Tét hiányzik", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nincs elég pénze a fogadás megtételéhez.", "Elégtelen pénzeszköz", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            playerMoney -= JelenlegiTet;
-            txtMoney.Text = $"Pénz: {playerMoney}";
+            JelenlegiPenz -= Megtettosszeg;
 
-            Random random = new Random();
-            int Gyszam = random.Next(0, 37);
-            string kiSzin = (Gyszam == 0) ? "Zöld" : (IsRed(Gyszam) ? "Piros" : "Fekete");
+            // Random spin logic
+            Random SzamSzin = new Random();
+            int GySzam = SzamSzin.Next(0, 37);
 
-            lblResult.Text = $"Nyertes szám: {Gyszam} ({kiSzin})";
-
-            if (tet == "Piros" && kiSzin == "Piros" ||
-                tet == "Fekete" && kiSzin == "Fekete" ||
-                tet == Gyszam.ToString())
+            string szin;
+            if (GySzam == 0)
             {
-                int kifizetes = (tet == "Piros" || tet == "Fekete") ? JelenlegiTet * 2 : JelenlegiTet * 35;
-                playerMoney += kifizetes;
-                txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                szin = "ZÖLD";
             }
-            else if (tet == "1to12" && Gyszam >= 1 && Gyszam <= 12 ||
-             tet == "13to24" && Gyszam >= 13 && Gyszam <= 24 ||
-             tet == "25to36" && Gyszam >= 25 && Gyszam <= 36)
+            else if (IsRed(GySzam))
             {
-                int kifizetes = JelenlegiTet * 3; // 3x szorzó
-                playerMoney += kifizetes;
-                txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if (tet == "Odd" && Gyszam % 2 == 1 || tet == "Even" && Gyszam % 2 == 0)
-            {
-                int kifizetes = JelenlegiTet * 2; // 2x szorzó
-                playerMoney += kifizetes;
-                txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                szin = "PIROS";
             }
             else
             {
-                MessageBox.Show("Vesztettél. Próbáld újra!", "Sajnálom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                szin = "FEKETE";
             }
 
-            tet = "";
+            int KiSzam;
+            int kiSzin;
+            int Kifizetes;
+
+
+            MessageBox.Show($"Győztes szám: {GySzam}({szin})", "Pörgetés eredménye", MessageBoxButtons.OK, MessageBoxIcon.Information);
+ 
+            if (clickedButton != null && int.TryParse(clickedButton.Text, out KiSzam))
+            {
+                if (KiSzam == GySzam)
+                {
+                    Kifizetes = Megtettosszeg * 35;  // 35x szorzó a számokra tett fogadásnál
+                    JelenlegiPenz += Kifizetes;
+                    MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}\n Szám/szín: {GySzam}({szin})", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Vesztettél. Sok szerencsét legközelebb", "Próbáld újra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+            //int megtettszam = int.Parse(clickedButton.Text);
+            
+            
+            if (!string.IsNullOrEmpty(szin)) // Ellenőrizzük, hogy nem üres vagy null
+            {
+                if (clickedPiros.Text == "PIROS" || szin == "PIROS" || clickedPiros.Text == szin || clickedFekete.Text == "FEKETE" || szin == "FEKETE" || clickedFekete.Text == szin)
+                {
+                    int payout = (clickedButton.Text == "Piros" || clickedButton.Text == "Fekete") ? Megtettosszeg * 2 : Megtettosszeg * 35;
+                    JelenlegiPenz += payout;
+                    //Kifizetes = Megtettosszeg * 2;  // 2x szorzó a színre tett fogadásnál
+                    JelenlegiPenz += payout;
+                    MessageBox.Show($"Nyertél! Kifizetés: {payout}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }   
+            }
+            /*
+            if (!string.IsNullOrEmpty(szin)) // Ellenőrizzük, hogy nem üres vagy null
+            {
+                if (clickedFekete == clickedButton)
+                {
+                    Kifizetes = Megtettosszeg * 2;  // 2x szorzó a színre tett fogadásnál
+                    JelenlegiPenz += Kifizetes;
+                    MessageBox.Show($"Nyertél! Kifizetés: {Kifizetes}", "Winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }*/
+            fixmoney.Text = $"Money: {JelenlegiPenz}";
+        }
+        /*var BetOsszeg = 0;
+        var Money = 0;
+        var moneyText = fixmoney.Text.Replace("Money: ", "");
+        if (!int.TryParse(moneyText, out Money))
+        {
+            MessageBox.Show("Hiba történt az aktuális pénz kiolvasásakor.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        // txtmoney ellenőrzese
+        if (!int.TryParse(txtMoney.Text, out BetOsszeg) || BetOsszeg <= 0)
+        {
+            MessageBox.Show("Kérjük, adjon meg egy érvényes tétösszeget!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        // Összeg ellenőrzése
+        if (BetOsszeg > Money)
+        {
+            MessageBox.Show("A megadott összeg több mint amennyi pénzed van", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        else
+        {
+            Money -= BetOsszeg;//Megadott összeget kivonja a fix összegből
+            fixmoney.Text = $"Money: {Money}";
+        }*/
+
+        private void Szabaly_Click(object sender, EventArgs e)
+        {
+            
+            string szoveg = "További információk";
+            Szabaly.Text = "i";
+            var felirat = Szabaly.Text.Replace("Szabályzat: \n ", "");
+            if (Szabaly.Text == "i")
+            {
+                Szabaly.Text = "i";
+                MessageBox.Show("Szabályzat: \n ", "Alap Szabályzat", MessageBoxButtons.OK);
+            }
+            if (MessageBoxButtons.OK == MessageBoxButtons.OK)
+            {
+                Szabaly.Text = "i";
+                MessageBox.Show("Esélyek: \n ", "Nyerési Esélyek",MessageBoxButtons.OK);
+            }
         }
     }
 }
