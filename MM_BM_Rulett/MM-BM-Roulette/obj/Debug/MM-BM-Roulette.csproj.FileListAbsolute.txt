@@ -28,3 +28,12 @@ C:\Users\MagyarMark\Documents\GitHub\Roulette\MM-BM-Roulette\obj\Debug\MM-BM-Rou
 C:\Users\MagyarMark\Documents\GitHub\Roulette\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.CoreCompileInputs.cache
 C:\Users\MagyarMark\Documents\GitHub\Roulette\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.exe
 C:\Users\MagyarMark\Documents\GitHub\Roulette\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.pdb
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\MM-BM-Roulette.exe.config
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\MM-BM-Roulette.exe
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.AssemblyReference.cache
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM_BM_Roulette.Form1.resources
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM_BM_Roulette.Properties.Resources.resources
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.GenerateResource.cache
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.CoreCompileInputs.cache
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.exe
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.pdb

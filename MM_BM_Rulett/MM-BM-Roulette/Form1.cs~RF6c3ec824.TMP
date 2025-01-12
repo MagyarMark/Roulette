@@ -363,7 +363,7 @@ namespace MM_BM_Roulette
 
             lblResult.Text = $"Nyertes szám: {Gyszam} ({kiSzin})";
 
-            if (tet == "Piros"  && kiSzin == "Piros" ||
+            if (tet == "Piros" && kiSzin == "Piros" ||
                 tet == "Fekete" && kiSzin == "Fekete")
             {
                 kifizetes  = JelenlegiTet * 2;
@@ -371,9 +371,9 @@ namespace MM_BM_Roulette
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            if (tet == "1to12"  && (Gyszam >= 1 || Gyszam >= 2 || Gyszam >= 3 || Gyszam >= 4 || Gyszam >= 5 || Gyszam >= 6 || Gyszam >= 7 || Gyszam >= 8 || Gyszam >= 9 || Gyszam >= 10 || Gyszam >= 11 || Gyszam >= 12) ||
-                tet == "13to24" && (Gyszam >= 13 || Gyszam >= 14 || Gyszam >= 15 || Gyszam >= 16 || Gyszam >= 17 || Gyszam >= 18 || Gyszam >= 19 || Gyszam >= 20 || Gyszam >= 21 || Gyszam >= 22 || Gyszam >= 23 || Gyszam >= 24) ||
-                tet == "25to36" && (Gyszam >= 25 || Gyszam >= 26 || Gyszam >= 27 || Gyszam >= 28 || Gyszam >= 29 || Gyszam >= 30 || Gyszam >= 31 || Gyszam >= 32 || Gyszam >= 33 || Gyszam >= 34 || Gyszam >= 35 || Gyszam >= 36))
+            if (tet == "1to12" && Gyszam >= 1 && Gyszam <= 12 ||
+                     tet == "13to24" && Gyszam >= 13 && Gyszam <= 24 ||
+                     tet == "25to36" && Gyszam >= 25 && Gyszam <= 36)
             {
                 kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
@@ -387,9 +387,9 @@ namespace MM_BM_Roulette
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            if (tet == "Első sor 2:1"     && (Gyszam == 3 || Gyszam == 6 || Gyszam == 9 || Gyszam == 12 || Gyszam == 15 || Gyszam == 18) || Gyszam == 21 || Gyszam == 24 || Gyszam == 27 || Gyszam == 30 || Gyszam == 33 || Gyszam == 36 ||
-                tet == "Második sor 2:1"  && (Gyszam == 2 || Gyszam == 5 || Gyszam == 8 || Gyszam == 11 || Gyszam == 14 || Gyszam == 17) || Gyszam == 20 || Gyszam == 23 || Gyszam == 26 || Gyszam == 29 || Gyszam == 32 || Gyszam == 35 ||
-                tet == "Harmadik sor 2:1" && (Gyszam == 1 || Gyszam == 4 || Gyszam == 7 || Gyszam == 10 || Gyszam == 13 || Gyszam == 16) || Gyszam == 19 || Gyszam == 22 || Gyszam == 25 || Gyszam == 28 || Gyszam == 31 || Gyszam == 34)
+            if ((tet == "Első sor 2:1" && (Gyszam == 3 || Gyszam == 6 || Gyszam == 9 || Gyszam == 12 || Gyszam == 15 || Gyszam == 18) || Gyszam == 21 || Gyszam == 24 || Gyszam == 27 || Gyszam == 30 || Gyszam == 33 || Gyszam == 36 ) ||
+                     (tet == "Második sor 2:1" && (Gyszam == 2 || Gyszam == 5 || Gyszam == 8 || Gyszam == 11 || Gyszam == 14 || Gyszam == 17) || Gyszam == 20 || Gyszam == 23 || Gyszam == 26 || Gyszam == 29 || Gyszam == 32 || Gyszam == 35) ||
+                     (tet == "Harmadik sor 2:1" && (Gyszam == 1 || Gyszam == 4 || Gyszam == 7 || Gyszam == 10 || Gyszam == 13 || Gyszam == 16) || Gyszam == 19 || Gyszam == 22 || Gyszam == 25 || Gyszam == 28 || Gyszam == 31 || Gyszam == 34))
             {
                 kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
