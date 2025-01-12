@@ -265,6 +265,18 @@ namespace MM_BM_Roulette
             S312.Click += (s, n) => SetBet("Harmadik 2:1");
             this.Controls.Add(S312);
 
+            stat = new Label
+            {
+                Text = "Eredmény:",
+                Location = new Point(20, 250),
+                Size = new Size(100, 50),
+                Font = new Font("Arial", 12, FontStyle.Bold),
+                BackColor = ColorTranslator.FromHtml("#08121A"),
+                ForeColor = Color.White
+            };
+            this.Controls.Add(stat);
+
+
             //szám gombok
             string[,] szamok = new string[,]
             {
@@ -358,15 +370,15 @@ namespace MM_BM_Roulette
 
             Random random = new Random();
             int Gyszam = random.Next(0, 37);
-            int kifizetes;
             string kiSzin = (Gyszam == 0) ? "Zöld" : (IsRed(Gyszam) ? "Piros" : "Fekete");
 
             lblResult.Text = $"Nyertes szám: {Gyszam} ({kiSzin})";
 
             if (tet == "Piros" && kiSzin == "Piros" ||
-                tet == "Fekete" && kiSzin == "Fekete")
+                tet == "Fekete" && kiSzin == "Fekete" ||
+                tet == Gyszam.ToString())
             {
-                kifizetes  = JelenlegiTet * 2;
+                int kifizetes = (tet == "Piros" || tet == "Fekete") ? JelenlegiTet * 2 : JelenlegiTet * 35;
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -375,14 +387,14 @@ namespace MM_BM_Roulette
                      tet == "13to24" && Gyszam >= 13 && Gyszam <= 24 ||
                      tet == "25to36" && Gyszam >= 25 && Gyszam <= 36)
             {
-                kifizetes = JelenlegiTet * 3; // 3x szorzó
+                int kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (tet == "Odd" && Gyszam % 2 == 1 || tet == "Even" && Gyszam % 2 == 0)
             {
-                kifizetes = JelenlegiTet * 2; // 2x szorzó
+                int kifizetes = JelenlegiTet * 2; // 2x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -391,7 +403,7 @@ namespace MM_BM_Roulette
                      tet == "Második sor 2:1" && (Gyszam == 2 || Gyszam == 5 || Gyszam == 8 || Gyszam == 11 || Gyszam == 14 || Gyszam == 17) || Gyszam == 20 || Gyszam == 23 || Gyszam == 26 || Gyszam == 29 || Gyszam == 32 || Gyszam == 35 ||
                      tet == "Harmadik sor 2:1" && (Gyszam == 1 || Gyszam == 4 || Gyszam == 7 || Gyszam == 10 || Gyszam == 13 || Gyszam == 16) || Gyszam == 19 || Gyszam == 22 || Gyszam == 25 || Gyszam == 28 || Gyszam == 31 || Gyszam == 34)
             {
-                kifizetes = JelenlegiTet * 3; // 3x szorzó
+                int kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -402,8 +414,6 @@ namespace MM_BM_Roulette
             }
 
             tet = "";
-
-
         }
     }
 }

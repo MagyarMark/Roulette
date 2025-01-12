@@ -364,9 +364,10 @@ namespace MM_BM_Roulette
             lblResult.Text = $"Nyertes szám: {Gyszam} ({kiSzin})";
 
             if (tet == "Piros" && kiSzin == "Piros" ||
-                tet == "Fekete" && kiSzin == "Fekete")
+                tet == "Fekete" && kiSzin == "Fekete" ||
+                tet == Gyszam.ToString())
             {
-                kifizetes  = JelenlegiTet * 2;
+                kifizetes = (tet == "Piros" || tet == "Fekete") ? JelenlegiTet * 2 : JelenlegiTet * 35;
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);

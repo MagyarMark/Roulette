@@ -10,7 +10,6 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace MM_BM_Roulette
 {
@@ -18,10 +17,9 @@ namespace MM_BM_Roulette
     {
         private TextBox txtMoney;
         private TextBox txtBetAmount;
-        private Label lblResult;
-        private Label stat;
-        private Button btnRed;
         private Button btnSpin;
+        private Label lblResult;
+        private Button btnRed;
         private Button btnBlack;
         private Button btn1to12;
         private Button btn13to24;
@@ -37,13 +35,10 @@ namespace MM_BM_Roulette
         private Panel panel1;
         private Panel panel2;
 
-        private int playerMoney = 0;
+        private int playerMoney = 1000;
         private int JelenlegiTet = 0;
         private string tet = "";
-        private string PlayerName { get; set; }
-        private decimal PlayerBalance { get; set; }
-
-        public Form1(string playerName, decimal playerBalance)
+        public Form1()
         {
             InitializeComponent();
             this.Icon = new Icon("favicon.ico");//kép: https://www.flaticon.com/free-icon/roulette_218417
@@ -52,20 +47,18 @@ namespace MM_BM_Roulette
             this.Text = "Rulett Játék";
             this.Size = new Size(1000, 600);
             this.StartPosition = FormStartPosition.CenterScreen;
-
-            PlayerName = playerName;
-            PlayerBalance = playerBalance;
-            playerMoney = (int)PlayerBalance;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+
             // játékos pénze
             txtMoney = new TextBox
             {
                 Text = $"Pénz: {playerMoney}",
                 Location = new Point(20, 20),
-                Size = new Size(210, 30),
+                Size = new Size(200, 30),
                 ReadOnly = true,
                 TextAlign = HorizontalAlignment.Center,
                 Font = new Font("Arial", 12, FontStyle.Bold),
@@ -78,7 +71,7 @@ namespace MM_BM_Roulette
             {
                 Text = "Add meg a tétet",
                 Location = new Point(20, 60),
-                Size = new Size(210, 30),
+                Size = new Size(200, 30),
                 TextAlign = HorizontalAlignment.Center
             };
             this.Controls.Add(txtBetAmount);
@@ -88,7 +81,7 @@ namespace MM_BM_Roulette
             {
                 Text = "Pörgetés",
                 Location = new Point(20, 90),
-                Size = new Size(210, 40),
+                Size = new Size(200, 40),
                 Font = new Font("Arial", 12, FontStyle.Bold),
                 BackColor = Color.Green,
                 ForeColor = Color.White,
@@ -102,7 +95,7 @@ namespace MM_BM_Roulette
             {
                 Text = "Helyezd el a téted!",
                 Location = new Point(20, 140),
-                Size = new Size(210, 30),
+                Size = new Size(200, 30),
                 Font = new Font("Arial", 10, FontStyle.Bold),
                 BackColor = Color.White,
                 ForeColor = Color.Black,
@@ -236,7 +229,7 @@ namespace MM_BM_Roulette
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Popup
             };
-            S112.Click += (s, n) => SetBet("Első 2:1");
+            S112.Click += (s, n) => SetBet("Első sor 2:1");
             this.Controls.Add(S112);
 
             S212 = new Button
@@ -249,7 +242,7 @@ namespace MM_BM_Roulette
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Popup
             };
-            S212.Click += (s, n) => SetBet("Második 2:1");
+            S212.Click += (s, n) => SetBet("Második sor 2:1");
             this.Controls.Add(S212);
 
             S312 = new Button
@@ -262,8 +255,9 @@ namespace MM_BM_Roulette
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Popup
             };
-            S312.Click += (s, n) => SetBet("Harmadik 2:1");
+            S312.Click += (s, n) => SetBet("Harmadik sor 2:1");
             this.Controls.Add(S312);
+
 
             //szám gombok
             string[,] szamok = new string[,]
@@ -358,15 +352,15 @@ namespace MM_BM_Roulette
 
             Random random = new Random();
             int Gyszam = random.Next(0, 37);
-            int kifizetes;
             string kiSzin = (Gyszam == 0) ? "Zöld" : (IsRed(Gyszam) ? "Piros" : "Fekete");
 
             lblResult.Text = $"Nyertes szám: {Gyszam} ({kiSzin})";
 
             if (tet == "Piros" && kiSzin == "Piros" ||
-                tet == "Fekete" && kiSzin == "Fekete")
+                tet == "Fekete" && kiSzin == "Fekete" ||
+                tet == Gyszam.ToString())
             {
-                kifizetes  = JelenlegiTet * 2;
+                int kifizetes = (tet == "Piros" || tet == "Fekete") ? JelenlegiTet * 2 : JelenlegiTet * 35;
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -375,14 +369,14 @@ namespace MM_BM_Roulette
                      tet == "13to24" && Gyszam >= 13 && Gyszam <= 24 ||
                      tet == "25to36" && Gyszam >= 25 && Gyszam <= 36)
             {
-                kifizetes = JelenlegiTet * 3; // 3x szorzó
+                int kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (tet == "Odd" && Gyszam % 2 == 1 || tet == "Even" && Gyszam % 2 == 0)
             {
-                kifizetes = JelenlegiTet * 2; // 2x szorzó
+                int kifizetes = JelenlegiTet * 2; // 2x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -391,7 +385,7 @@ namespace MM_BM_Roulette
                      tet == "Második sor 2:1" && (Gyszam == 2 || Gyszam == 5 || Gyszam == 8 || Gyszam == 11 || Gyszam == 14 || Gyszam == 17) || Gyszam == 20 || Gyszam == 23 || Gyszam == 26 || Gyszam == 29 || Gyszam == 32 || Gyszam == 35 ||
                      tet == "Harmadik sor 2:1" && (Gyszam == 1 || Gyszam == 4 || Gyszam == 7 || Gyszam == 10 || Gyszam == 13 || Gyszam == 16) || Gyszam == 19 || Gyszam == 22 || Gyszam == 25 || Gyszam == 28 || Gyszam == 31 || Gyszam == 34)
             {
-                kifizetes = JelenlegiTet * 3; // 3x szorzó
+                int kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
                 MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -402,8 +396,6 @@ namespace MM_BM_Roulette
             }
 
             tet = "";
-
-
         }
     }
 }

@@ -20,7 +20,7 @@ namespace MM_BM_Roulette
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Text = "Rulett Játék";
-            this.Size = new Size(500,300);
+            this.Size = new Size(500,500);
             this.StartPosition = FormStartPosition.CenterScreen;
         }
         public void Form2_Load(object sender, EventArgs e)
@@ -30,8 +30,6 @@ namespace MM_BM_Roulette
                 Text = "Add meg a neved",
                 Location = new Point(145, 30),
                 Size = new Size(210, 30),
-                BackColor = ColorTranslator.FromHtml("#213743"),
-                ForeColor = Color.White,
                 TextAlign = HorizontalAlignment.Center
             };
             this.Controls.Add(txtName);
@@ -41,8 +39,6 @@ namespace MM_BM_Roulette
                 Text = "Add meg az egyenlegedet",
                 Location = new Point(145, 70),
                 Size = new Size(210, 30),
-                BackColor = ColorTranslator.FromHtml("#213743"),
-                ForeColor = Color.White,
                 TextAlign = HorizontalAlignment.Center
             };
             this.Controls.Add(txtBalance);
@@ -63,8 +59,8 @@ namespace MM_BM_Roulette
             lblbev = new Label
             {
                 Text = "Üdvözöllek a Rulett Játékben!\nKészítette: Magyar Márk és Butty Máté\nSok szerencsét a játék során!😈",
-                Location = new Point(5, 120),
-                Size = new Size(500, 140),
+                Location = new Point(145, 200),
+                Size = new Size(210, 30),
                 BackColor = ColorTranslator.FromHtml("#08121A"),
                 TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font("Arial", 14, FontStyle.Bold),
