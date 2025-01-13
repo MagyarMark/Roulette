@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -60,6 +61,9 @@ namespace MM_BM_Roulette
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            axWindowsMediaPlayer1.Visible = false;
+
+
             // játékos pénze
             txtMoney = new TextBox
             {
@@ -358,11 +362,18 @@ namespace MM_BM_Roulette
 
             Random random = new Random();
             int Gyszam = random.Next(0, 37);
+            string url_kerek = Gyszam + ".mp4";
+            axWindowsMediaPlayer1.uiMode = "none";
+            axWindowsMediaPlayer1.stretchToFit = true;
+            axWindowsMediaPlayer1.Visible = true;
+            axWindowsMediaPlayer1.Ctlcontrols.play();
+
+            axWindowsMediaPlayer1.URL = url_kerek;
+
             int kifizetes;
             string kiSzin = (Gyszam == 0) ? "Zöld" : (IsRed(Gyszam) ? "Piros" : "Fekete");
 
             lblResult.Text = $"Nyertes szám: {Gyszam} ({kiSzin})";
-
             if (tet == "Piros"  && kiSzin == "Piros" ||
                 tet == "Fekete" && kiSzin == "Fekete")
             {
@@ -402,6 +413,7 @@ namespace MM_BM_Roulette
             }
 
             tet = "";
+            axWindowsMediaPlayer1.Visible = false;
         }
     }
 }
