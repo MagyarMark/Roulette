@@ -148,7 +148,7 @@ namespace MM_BM_Roulette
             btnBlack = new Button
             {
                 Location = new Point(618, 500),
-                Size = new Size(100, 50),
+                Size = new Size(105, 50),
                 BackColor = Color.Black,
                 ForeColor = Color.Black,
                 FlatStyle = FlatStyle.Popup
@@ -389,7 +389,7 @@ namespace MM_BM_Roulette
 
             pictureBox1.Visible = false;
             
-            int kifizetes;
+            int kifizetes = 0;
             string kiSzin = (Gyszam == 0) ? "Zöld" : (IsRed(Gyszam) ? "Piros" : "Fekete");
 
             lblResult.Text = $"Nyertes szám: {Gyszam} ({kiSzin})";

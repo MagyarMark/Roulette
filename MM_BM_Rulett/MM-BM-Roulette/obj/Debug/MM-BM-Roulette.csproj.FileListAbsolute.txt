@@ -56,19 +56,12 @@ C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\I
 C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\AxInterop.WMPLib.dll
 C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.ResolveComReference.cache
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
 =======
 >>>>>>> Stashed changes
 <<<<<<< HEAD
 C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\MM-BM-Roulette.pdb
 C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\Interop.WMPLib.dll
 C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\AxInterop.WMPLib.dll
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 D:\roulett_agyhalál\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\MM-BM-Roulette.exe.config
 D:\roulett_agyhalál\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\MM-BM-Roulette.exe
 D:\roulett_agyhalál\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\MM-BM-Roulette.pdb
@@ -84,11 +77,4 @@ D:\roulett_agyhalál\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulet
 D:\roulett_agyhalál\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.CoreCompileInputs.cache
 D:\roulett_agyhalál\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.exe
 D:\roulett_agyhalál\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.pdb
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
 >>>>>>> 4ef83e3e2a4c205851cde00da8725b30027e6e7d
->>>>>>> Stashed changes
-=======
->>>>>>> 4ef83e3e2a4c205851cde00da8725b30027e6e7d
->>>>>>> Stashed changes
