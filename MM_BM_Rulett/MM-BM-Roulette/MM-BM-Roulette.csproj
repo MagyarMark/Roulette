@@ -108,5 +108,8 @@
   <ItemGroup>
     <None Include="Resources\alap_roulett.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\alap_roulett.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

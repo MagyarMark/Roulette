@@ -73,6 +73,26 @@ namespace MM_BM_Roulette.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap alap_roulett1 {
+            get {
+                object obj = ResourceManager.GetObject("alap_roulett1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap alap_roulett2 {
+            get {
+                object obj = ResourceManager.GetObject("alap_roulett2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap box_gift {
             get {
                 object obj = ResourceManager.GetObject("box gift", resourceCulture);
