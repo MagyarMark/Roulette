@@ -47,7 +47,7 @@ namespace MM_BM_Roulette
         private List<string> Players = new List<string>();
         private decimal randomBalance;
 
-        public Form1(string playerName, decimal playerBalance, List<string> players, decimal RandomBalance)
+        public Form1(string playerName, decimal playerBalance, List<string> players, decimal randomBalance)
         {
             InitializeComponent();
             this.Icon = new Icon("favicon.ico");//kép: https://www.flaticon.com/free-icon/roulette_218417
@@ -61,12 +61,12 @@ namespace MM_BM_Roulette
             PlayerName = playerName;
             PlayerBalance = playerBalance;
             Players = players;
-            randomBalance = RandomBalance;
             playerMoney = (int)PlayerBalance;
         }
-        string[] storage = new string[2];
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            axWindowsMediaPlayer1.Visible = false;
 
 
             // játékos pénze
@@ -328,7 +328,7 @@ namespace MM_BM_Roulette
             panel1 = new Panel
             {
                 Dock = DockStyle.Left,
-                BackColor = ColorTranslator.FromHtml("#ECEBEC"),
+                BackColor = ColorTranslator.FromHtml("#08121A"),
                 Size = new Size(1000, 600)
             };
             this.Controls.Add(panel1);
@@ -378,35 +378,35 @@ namespace MM_BM_Roulette
             txtMoney.Text = $"Pénz: {playerMoney}";
 
             Random random = new Random();
-            int Gyszam = random.Next(0, 37); 
+            int Gyszam = random.Next(0, 37);
             string url_kerek = Gyszam + ".mp4";
             axWindowsMediaPlayer1.uiMode = "none";
             axWindowsMediaPlayer1.stretchToFit = true;
             axWindowsMediaPlayer1.Visible = true;
             axWindowsMediaPlayer1.settings.setMode("autoStart", true);
             axWindowsMediaPlayer1.Ctlcontrols.play();
+
             axWindowsMediaPlayer1.URL = url_kerek;
 
-            pictureBox1.Visible = false;
-            
-            int kifizetes;
+            int kifizetes = 0;
             string kiSzin = (Gyszam == 0) ? "Zöld" : (IsRed(Gyszam) ? "Piros" : "Fekete");
 
             lblResult.Text = $"Nyertes szám: {Gyszam} ({kiSzin})";
+            stat.Text = $"Játékosok száma: {Players.Count + 1}" +
+                $"\n Nyertesek: {Players[0]}"
+                /*$"\n {Players[1]}"+
+                $"\n {Players[2]}"+
+                $"\n {Players[3]}"+
+                $"\n {Players[4]}"*/;
 
-            /*if (Gyszam == random.Next(0, 37))
+            if (Gyszam == random.Next(0, 37))
             {
-                Players[0] += randomBalance;
-                Players[1] += randomBalance;
-                Players[2] += randomBalance;
-                Players[3] += randomBalance;
-                Players[4] += randomBalance;
+                Players[0] += random.Next(0, 2500);
+                Players[1] += random.Next(0, 2500);
+                Players[2] += random.Next(0, 2500);
+                Players[3] += random.Next(0, 2500);
+                Players[4] += random.Next(0, 2500);
             }
-
-            foreach (var item in Players)
-            {
-                stat.Text += $"Játékosok száma: {Players.Count + 1} \n {item}";
-            }*/
 
             if ((tet == "Piros" && kiSzin == "Piros")||
                 (tet == "Fekete" && kiSzin == "Fekete"))
@@ -417,27 +417,18 @@ namespace MM_BM_Roulette
                      (tet == "13to24" && Gyszam >= 13 && Gyszam <= 24) ||
                      (tet == "25to36" && Gyszam >= 25 && Gyszam <= 36))
             {
-                kifizetes  = JelenlegiTet * 2;
-                playerMoney += kifizetes;
-                txtMoney.Text = $"Pénz: {playerMoney}";
-                storage = new string[2] {$"Nyertél{PlayerName}! Nyeremény: {kifizetes}",$"Gratulálok" };
+                kifizetes = JelenlegiTet * 3;
             }
             else if ((tet == "Odd" && Gyszam % 2 == 1)||
                     (tet == "Even" && Gyszam % 2 == 0))
             {
-                kifizetes = JelenlegiTet * 3; // 3x szorzó
-                playerMoney += kifizetes;
-                txtMoney.Text = $"Pénz: {playerMoney}";
-                storage = new string[2] { $"Nyertél{PlayerName}! Nyeremény: {kifizetes}", $"Gratulálok" };
+                kifizetes = JelenlegiTet * 2;
             }
             else if ((tet == "Első 2:1" && (Gyszam % 3 == 0)) ||
                      (tet == "Második 2:1" && (Gyszam % 3 == 2)) ||
                      (tet == "Harmadik 2:1" && (Gyszam % 3 == 1)))
             {
-                kifizetes = JelenlegiTet * 2; // 2x szorzó
-                playerMoney += kifizetes;
-                txtMoney.Text = $"Pénz: {playerMoney}";
-                storage = new string[2] { $"Nyertél{PlayerName}! Nyeremény: {kifizetes}", $"Gratulálok" };
+                kifizetes = JelenlegiTet * 3;
             }
 
 
@@ -445,26 +436,15 @@ namespace MM_BM_Roulette
             {
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
-                storage = new string[2] { $"Nyertél{PlayerName}! Nyeremény: {kifizetes}", $"Gratulálok" };
+                MessageBox.Show($"Nyertél {PlayerName}! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                storage = new string[2] { $"Vesztettél. Próbáld újra!", $"Sajnálom" };
+                MessageBox.Show("Vesztettél. Próbáld újra!", "Sajnálom", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             tet = "";
             axWindowsMediaPlayer1.Visible = false;
         }
-
-        private void asd(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
-        {
-            if (e.newState == 1)
-            {
-                axWindowsMediaPlayer1.Visible = false;
-                pictureBox1.Visible = true;
-                MessageBox.Show($"{storage[0]}", $"{storage[1]}", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
     }
 }

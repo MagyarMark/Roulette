@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -51,6 +50,15 @@ namespace MM_BM_Roulette
             };
             this.Controls.Add(txtBalance);
 
+            lblvalaszt = new Label 
+            {
+                Text = "Add meg a játékosok szamat",
+                Location = new Point(145, 90),
+                Size = new Size(210, 30),
+                BackColor = ColorTranslator.FromHtml("#213743"),
+                ForeColor = Color.White
+            };
+
             cmbOptions = new ComboBox
             {
                 Location = new Point(145, 110),
@@ -69,18 +77,8 @@ namespace MM_BM_Roulette
                 "4 játékos",
                 "5 játékos"
             });
-            cmbOptions.SelectedIndex = 0;
+            cmbOptions.SelectedIndex = cmbOptions.Text.IndexOf("1 játékos"); // Alapértelmezett kiválasztás
             this.Controls.Add(cmbOptions);
-
-            lblvalaszt = new Label 
-            {
-                Text = "Add meg a játékosok számat:",
-                Location = new Point(145, 95),
-                Size = new Size(210, 30),
-                BackColor = ColorTranslator.FromHtml("#08121A"),
-                ForeColor = Color.White
-            };
-            this.Controls.Add(lblvalaszt);
 
             btnSubmit = new Button
             {
@@ -136,52 +134,14 @@ namespace MM_BM_Roulette
                 return;
             }
 
-            int selectedPlayers = cmbOptions.SelectedIndex + 1;
+            // Kiválasztott opció
+            string selectedOption = cmbOptions.SelectedItem.ToString();
 
-            Random random = new Random();
-            string[] randomNames = { 
-                "János", 
-                "Éva", 
-                "Péter", 
-                "Anna", 
-                "Gábor", 
-                "Lilla", 
-                "Tamás", 
-                "Zsófia", 
-                "Vivien", 
-                "Márk", 
-                "Máté", 
-                "Zoltán", 
-                "Albert", 
-                "Ábel", 
-                "Bettina", 
-                "Balázs", 
-                "Dorottya", 
-                "Erika", 
-                "Ferenc",
-                "Gábor",
-                "Bence",
-                "Hajnalka",
-                "Ildiko",
-                "József",
-                "Katalin",
-                "László",
-                "Miklós",
-            };
-            List<string> players = new List<string>();
-            decimal randomBalance = random.Next(0,5000);
-            for (int i = 0; i < selectedPlayers; i++)
-            {
-                string randomName = randomNames[random.Next(randomNames.Length)];
-                players.Add($"{randomName} - {randomBalance} Ft");
-            }
-
-            
-            string playersInfo = string.Join("\n", players);
-            MessageBox.Show($"Üdv, {playerName}!\nAz egyenleged: {playerBalance} Ft\n\nEllenfél Játékosok:\n{playersInfo}",
+            MessageBox.Show($"Üdv, {playerName}!\nAz egyenleged: {playerBalance} Ft\nVálasztott opció: {selectedOption}",
                 "Játék indul", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            Form1 mainForm = new Form1(playerName, playerBalance, players, randomBalance);
+            // Továbbadás az új formnak
+            Form1 mainForm = new Form1(playerName, playerBalance, selectedOption);
             mainForm.Show();
             this.Hide();
         }
