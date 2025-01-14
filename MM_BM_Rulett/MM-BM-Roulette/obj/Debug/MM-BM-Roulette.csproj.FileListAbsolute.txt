@@ -85,3 +85,6 @@ D:\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.GenerateResource.cache
 D:\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.CoreCompileInputs.cache
 D:\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.exe
 D:\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.pdb
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\MM-BM-Roulette.pdb
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\Interop.WMPLib.dll
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\bin\Debug\AxInterop.WMPLib.dll
