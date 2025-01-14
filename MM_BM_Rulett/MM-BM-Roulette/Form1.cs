@@ -59,10 +59,9 @@ namespace MM_BM_Roulette
             PlayerBalance = playerBalance;
             playerMoney = (int)PlayerBalance;
         }
-
+        string[] storage = new string[2];
         private void Form1_Load(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.Visible = false;
 
 
             // játékos pénze
@@ -312,7 +311,7 @@ namespace MM_BM_Roulette
             panel1 = new Panel
             {
                 Dock = DockStyle.Left,
-                BackColor = ColorTranslator.FromHtml("#08121A"),
+                BackColor = ColorTranslator.FromHtml("#ECEBEC"),
                 Size = new Size(1000, 600)
             };
             this.Controls.Add(panel1);
@@ -362,15 +361,16 @@ namespace MM_BM_Roulette
             txtMoney.Text = $"Pénz: {playerMoney}";
 
             Random random = new Random();
-            int Gyszam = random.Next(0, 37);
+            int Gyszam = random.Next(0, 37); 
             string url_kerek = Gyszam + ".mp4";
             axWindowsMediaPlayer1.uiMode = "none";
             axWindowsMediaPlayer1.stretchToFit = true;
             axWindowsMediaPlayer1.Visible = true;
             axWindowsMediaPlayer1.Ctlcontrols.play();
-
             axWindowsMediaPlayer1.URL = url_kerek;
 
+            pictureBox1.Visible = false;
+            
             int kifizetes;
             string kiSzin = (Gyszam == 0) ? "Zöld" : (IsRed(Gyszam) ? "Piros" : "Fekete");
 
@@ -381,7 +381,7 @@ namespace MM_BM_Roulette
                 kifizetes  = JelenlegiTet * 2;
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél{PlayerName}! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                storage = new string[2] {$"Nyertél{PlayerName}! Nyeremény: {kifizetes}",$"Gratulálok" };
             }
             if (tet == "1to12"  && (Gyszam >= 1 || Gyszam >= 2 || Gyszam >= 3 || Gyszam >= 4 || Gyszam >= 5 || Gyszam >= 6 || Gyszam >= 7 || Gyszam >= 8 || Gyszam >= 9 || Gyszam >= 10 || Gyszam >= 11 || Gyszam >= 12) ||
                 tet == "13to24" && (Gyszam >= 13 || Gyszam >= 14 || Gyszam >= 15 || Gyszam >= 16 || Gyszam >= 17 || Gyszam >= 18 || Gyszam >= 19 || Gyszam >= 20 || Gyszam >= 21 || Gyszam >= 22 || Gyszam >= 23 || Gyszam >= 24) ||
@@ -390,14 +390,14 @@ namespace MM_BM_Roulette
                 kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél{PlayerName}! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                storage = new string[2] { $"Nyertél{PlayerName}! Nyeremény: {kifizetes}", $"Gratulálok" };
             }
             if (tet == "Odd" && Gyszam % 2 == 1 || tet == "Even" && Gyszam % 2 == 0)
             {
                 kifizetes = JelenlegiTet * 2; // 2x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél{PlayerName}! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                storage = new string[2] { $"Nyertél{PlayerName}! Nyeremény: {kifizetes}", $"Gratulálok" };
             }
             if (tet == "Első sor 2:1"     && (Gyszam == 3 || Gyszam == 6 || Gyszam == 9 || Gyszam == 12 || Gyszam == 15 || Gyszam == 18) || Gyszam == 21 || Gyszam == 24 || Gyszam == 27 || Gyszam == 30 || Gyszam == 33 || Gyszam == 36 ||
                 tet == "Második sor 2:1"  && (Gyszam == 2 || Gyszam == 5 || Gyszam == 8 || Gyszam == 11 || Gyszam == 14 || Gyszam == 17) || Gyszam == 20 || Gyszam == 23 || Gyszam == 26 || Gyszam == 29 || Gyszam == 32 || Gyszam == 35 ||
@@ -406,15 +406,26 @@ namespace MM_BM_Roulette
                 kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél{PlayerName}! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                storage = new string[2] { $"Nyertél{PlayerName}! Nyeremény: {kifizetes}", $"Gratulálok" };
             }
             else
             {
-                MessageBox.Show("Vesztettél. Próbáld újra!", "Sajnálom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                storage = new string[2] { $"Vesztettél. Próbáld újra!", $"Sajnálom" };
             }
 
             tet = "";
             axWindowsMediaPlayer1.Visible = false;
         }
+
+        private void asd(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (e.newState == 1)
+            {
+                axWindowsMediaPlayer1.Visible = false;
+                pictureBox1.Visible = true;
+                MessageBox.Show($"{storage[0]}", $"{storage[1]}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }
