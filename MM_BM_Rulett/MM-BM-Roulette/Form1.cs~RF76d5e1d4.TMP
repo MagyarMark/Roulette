@@ -111,19 +111,6 @@ namespace MM_BM_Roulette
             };
             this.Controls.Add(lblResult);
 
-            stat = new Label
-            {
-                Location = new Point(0, 320),
-                Size = new Size(210, 800),
-                Font = new Font("Arial", 10, FontStyle.Bold),
-                BackColor = ColorTranslator.FromHtml("#213743"),
-                ForeColor = Color.Black,
-                FlatStyle = FlatStyle.Popup,
-            };
-            stat.Text = $"Játékosok száma: {Players.Count + 1}";
-            this.Controls.Add(stat);
-
-
             // piros gomb
             btnRed = new Button
             {
@@ -387,7 +374,6 @@ namespace MM_BM_Roulette
             string kiSzin = (Gyszam == 0) ? "Zöld" : (IsRed(Gyszam) ? "Piros" : "Fekete");
 
             eredmeny = $"Nyertes szám: {Gyszam} ({kiSzin})";
-
             if (tet == "Piros"  && kiSzin == "Piros" ||
                 tet == "Fekete" && kiSzin == "Fekete")
             {

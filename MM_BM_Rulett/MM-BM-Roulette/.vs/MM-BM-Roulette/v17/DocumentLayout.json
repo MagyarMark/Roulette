@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM_BM_Rulett\\MM-BM-Roulette\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|c:\\users\\markm\\documents\\github\\roulette\\mm_bm_rulett\\mm-bm-roulette\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM_BM_Rulett\\MM-BM-Roulette\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|c:\\users\\markm\\documents\\github\\roulette\\mm_bm_rulett\\mm-bm-roulette\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D7E4448C-6984-4B32-A440-C14C5E67192C}|MM-BM-Roulette.csproj|C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM_BM_Rulett\\MM-BM-Roulette\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,26 +38,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM_BM_Rulett\\MM-BM-Roulette\\Player.cs",
               "RelativeDocumentMoniker": "Player.cs",
               "ToolTip": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM_BM_Rulett\\MM-BM-Roulette\\Player.cs",
               "RelativeToolTip": "Player.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAG0AAAABAAAA",
+              "ViewState": "AQIAAJwAAAAAAAAAAAAQwLMAAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-12T09:32:56.878Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM_BM_Rulett\\MM-BM-Roulette\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\markm\\Documents\\GitHub\\Roulette\\MM_BM_Rulett\\MM-BM-Roulette\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAJABAAAAAAAAAAAAAAsAAAAbAAAA",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAACQAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T10:49:26.484Z",
               "EditorCaption": ""

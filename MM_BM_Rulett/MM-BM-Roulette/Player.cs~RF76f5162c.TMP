@@ -169,18 +169,27 @@ namespace MM_BM_Roulette
                 "Miklós",
             };
             List<string> players = new List<string>();
-            HashSet<int> usedBalances = new HashSet<int>();
+            HashSet<int> Rszam= new HashSet<int>();
+            
+            var randomBalance = 0;
+            int maxNumbers = 5000;
 
-            int randomBalance = random.Next(0, 5000);
-            for (int i = 0; i < selectedPlayers; i++)
+            while (Rszam.Count < maxNumbers)
             {
-                do
+                randomBalance = random.Next(0, 5000);
+                if (!Rszam.Contains(randomBalance))
                 {
-                    randomBalance = random.Next(1, 5000);
-                } while (!usedBalances.Add(randomBalance));//ismétlés szűrése
-                string randomName = randomNames[random.Next(randomNames.Length)];
-                players.Add($"{randomName} - {randomBalance} Ft");
+                    Rszam.Add(randomBalance);
+                    
+                }
+                
             }
+            for (int i = 0; i < selectedPlayers; i++)
+                    {
+                        string randomName = randomNames[random.Next(randomNames.Length)];
+                        players.Add($"{randomName} - {randomBalance} Ft");
+                    }
+            
 
 
             string playersInfo = string.Join("\n", players);

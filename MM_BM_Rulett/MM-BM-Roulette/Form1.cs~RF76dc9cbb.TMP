@@ -388,6 +388,23 @@ namespace MM_BM_Roulette
 
             eredmeny = $"Nyertes szám: {Gyszam} ({kiSzin})";
 
+
+            foreach (var item in Players)
+            {
+                if (Gyszam == random.Next(0, 37))
+                {
+                    Players[0] += randomBalance;
+                    Players[1] += randomBalance;
+                    Players[2] += randomBalance;
+                    Players[3] += randomBalance;
+                    Players[4] += randomBalance;
+
+                    stat.Text = $"Nyertesek: {item}";
+                }
+
+            }
+
+
             if (tet == "Piros"  && kiSzin == "Piros" ||
                 tet == "Fekete" && kiSzin == "Fekete")
             {

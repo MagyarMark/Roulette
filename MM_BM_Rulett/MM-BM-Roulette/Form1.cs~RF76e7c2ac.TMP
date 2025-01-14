@@ -388,6 +388,30 @@ namespace MM_BM_Roulette
 
             eredmeny = $"Nyertes szám: {Gyszam} ({kiSzin})";
 
+
+            string rszam = random.Next(0, 5000).ToString();
+
+            if (Gyszam == random.Next(0, 37))
+            {
+                Players[0] = stat.Text += $"\n {Players[0]} - {rszam}";
+                Players[1] = stat.Text += $"\n {Players[1]} - {rszam}";
+                Players[2] = stat.Text += $"\n {Players[2]} - {rszam}";
+                Players[3] = stat.Text += $"\n {Players[3]} - {rszam}";
+                Players[4] = stat.Text += $"\n {Players[4]} - {rszam}";
+                Players[5] = stat.Text += $"\n {Players[5]} - {rszam}";
+            }
+            else
+            { 
+Players[0] = stat.Text += $"\n {Players[0]} - {rszam}";
+                Players[1] = stat.Text += $"\n {Players[1]} - {rszam}";
+                Players[2] = stat.Text += $"\n {Players[2]} - {rszam}";
+                Players[3] = stat.Text += $"\n {Players[3]} - {rszam}";
+                Players[4] = stat.Text += $"\n {Players[4]} - {rszam}";
+                Players[5] = stat.Text += $"\n {Players[5]} - {rszam}";
+            }
+            }
+
+
             if (tet == "Piros"  && kiSzin == "Piros" ||
                 tet == "Fekete" && kiSzin == "Fekete")
             {
