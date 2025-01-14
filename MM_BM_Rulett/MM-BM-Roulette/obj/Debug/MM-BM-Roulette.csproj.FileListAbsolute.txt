@@ -52,3 +52,6 @@ C:\Users\mate2\OneDrive\Dokumentumok\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette
 C:\Users\mate2\OneDrive\Dokumentumok\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.CoreCompileInputs.cache
 C:\Users\mate2\OneDrive\Dokumentumok\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.exe
 C:\Users\mate2\OneDrive\Dokumentumok\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.pdb
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\Interop.WMPLib.dll
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\markm\Documents\GitHub\Roulette\MM_BM_Rulett\MM-BM-Roulette\obj\Debug\MM-BM-Roulette.csproj.ResolveComReference.cache

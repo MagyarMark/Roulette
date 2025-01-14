@@ -48,9 +48,8 @@ namespace MM_BM_Roulette
         {
             InitializeComponent();
             this.Icon = new Icon("favicon.ico");//kép: https://www.flaticon.com/free-icon/roulette_218417
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MinimizeBox = true;
+            this.MinimizeBox = false;
             this.Text = "Rulett Játék";
             this.Size = new Size(1000, 600);
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -363,13 +362,7 @@ namespace MM_BM_Roulette
 
             Random random = new Random();
             int Gyszam = random.Next(0, 37);
-            string url_kerek = Gyszam + ".mp4";
-            axWindowsMediaPlayer1.uiMode = "none";
-            axWindowsMediaPlayer1.stretchToFit = true;
-            axWindowsMediaPlayer1.Visible = true;
-            axWindowsMediaPlayer1.Ctlcontrols.play();
-
-            axWindowsMediaPlayer1.URL = url_kerek;
+            
 
             int kifizetes;
             string kiSzin = (Gyszam == 0) ? "Zöld" : (IsRed(Gyszam) ? "Piros" : "Fekete");
@@ -381,7 +374,7 @@ namespace MM_BM_Roulette
                 kifizetes  = JelenlegiTet * 2;
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél{PlayerName}! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             if (tet == "1to12"  && (Gyszam >= 1 || Gyszam >= 2 || Gyszam >= 3 || Gyszam >= 4 || Gyszam >= 5 || Gyszam >= 6 || Gyszam >= 7 || Gyszam >= 8 || Gyszam >= 9 || Gyszam >= 10 || Gyszam >= 11 || Gyszam >= 12) ||
                 tet == "13to24" && (Gyszam >= 13 || Gyszam >= 14 || Gyszam >= 15 || Gyszam >= 16 || Gyszam >= 17 || Gyszam >= 18 || Gyszam >= 19 || Gyszam >= 20 || Gyszam >= 21 || Gyszam >= 22 || Gyszam >= 23 || Gyszam >= 24) ||
@@ -390,14 +383,14 @@ namespace MM_BM_Roulette
                 kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél{PlayerName}! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             if (tet == "Odd" && Gyszam % 2 == 1 || tet == "Even" && Gyszam % 2 == 0)
             {
                 kifizetes = JelenlegiTet * 2; // 2x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél{PlayerName}! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             if (tet == "Első sor 2:1"     && (Gyszam == 3 || Gyszam == 6 || Gyszam == 9 || Gyszam == 12 || Gyszam == 15 || Gyszam == 18) || Gyszam == 21 || Gyszam == 24 || Gyszam == 27 || Gyszam == 30 || Gyszam == 33 || Gyszam == 36 ||
                 tet == "Második sor 2:1"  && (Gyszam == 2 || Gyszam == 5 || Gyszam == 8 || Gyszam == 11 || Gyszam == 14 || Gyszam == 17) || Gyszam == 20 || Gyszam == 23 || Gyszam == 26 || Gyszam == 29 || Gyszam == 32 || Gyszam == 35 ||
@@ -406,7 +399,7 @@ namespace MM_BM_Roulette
                 kifizetes = JelenlegiTet * 3; // 3x szorzó
                 playerMoney += kifizetes;
                 txtMoney.Text = $"Pénz: {playerMoney}";
-                MessageBox.Show($"Nyertél{PlayerName}! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Nyertél! Nyeremény: {kifizetes}", "Gratulálok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -414,6 +407,13 @@ namespace MM_BM_Roulette
             }
 
             tet = "";
+            string url_kerek = Gyszam + ".mp4";
+            axWindowsMediaPlayer1.uiMode = "none";
+            axWindowsMediaPlayer1.stretchToFit = true;
+            axWindowsMediaPlayer1.Visible = true;
+            axWindowsMediaPlayer1.Ctlcontrols.play();
+
+            axWindowsMediaPlayer1.URL = url_kerek;
             axWindowsMediaPlayer1.Visible = false;
         }
     }

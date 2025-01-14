@@ -17,9 +17,8 @@ namespace MM_BM_Roulette
         {
             Form2_Load(null, null);
             this.Icon = new Icon("favicon.ico");//kép: https://www.flaticon.com/free-icon/roulette_218417
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MinimizeBox = true;
+            this.MinimizeBox = false;
             this.Text = "Rulett Játék";
             this.Size = new Size(500,300);
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -63,7 +62,7 @@ namespace MM_BM_Roulette
 
             lblbev = new Label
             {
-                Text = "Üdvözöllek a Rulett Játékben!\nKészítette: Magyar Márk és Butty Máté\nSok szerencsét a játék során!",
+                Text = "Üdvözöllek a Rulett Játékben!\nKészítette: Magyar Márk és Butty Máté\nSok szerencsét a játék során!😈",
                 Location = new Point(5, 120),
                 Size = new Size(500, 140),
                 BackColor = ColorTranslator.FromHtml("#08121A"),
