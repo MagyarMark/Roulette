@@ -321,7 +321,7 @@ namespace MM_BM_Roulette
             panel1 = new Panel
             {
                 Dock = DockStyle.Left,
-                BackColor = ColorTranslator.FromHtml("#ECEBEC"),
+                BackColor = ColorTranslator.FromHtml("#FFFFFF"),
                 Size = new Size(1000, 600)
             };
             this.Controls.Add(panel1);
