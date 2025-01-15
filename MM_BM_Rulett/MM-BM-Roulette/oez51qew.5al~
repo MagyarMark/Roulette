@@ -119,7 +119,7 @@ namespace MM_BM_Roulette
                 ForeColor = Color.Black,
                 FlatStyle = FlatStyle.Popup,
             };
-            stat.Text = $"Játékosok száma: {Players.Count + 1}\n";
+            stat.Text = $"Játékosok száma: {Players.Count + 1}";
             this.Controls.Add(stat);
 
             // piros gomb
@@ -423,9 +423,27 @@ namespace MM_BM_Roulette
 
             tet = "";
 
-            StreamWriter sw = new StreamWriter("log.txt");
-            sw.Write(PlayerName + " - " + JelenlegiTet + " - " + storage[1] + "\n");
-            sw.Close();
+            StreamWriter sw = new StreamWriter("Log.txt", true, encoding: Encoding.UTF8);
+            if (Players.Count >= 6)
+            {
+                using (StreamWriter sw = new StreamWriter("Nyertesek.txt"))
+                {
+                    sw.Write(PlayerName + " - " + JelenlegiTet + tet + " - " + storage[1] + "\n");
+
+                    // Ha legalább 4 játékos van, kiírjuk őket
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (i < Players.Count)  // Ha van elég játékos
+                        {
+                            sw.WriteLine(Players[i] + " - " + storage[1] + "\n");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                sw.WriteLine("Nincs elég játékos!");
+            }
         }
 
         private void asd(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)

@@ -182,7 +182,6 @@ namespace MM_BM_Roulette
                 players.Add($"{randomName} - {randomBalance} Ft");
             }
 
-
             string playersInfo = string.Join("\n", players);
             MessageBox.Show($"Üdv, {playerName}!\nAz egyenleged: {playerBalance} Ft\n\nEllenfél Játékosok:\n{playersInfo}",
                 "Játék indul", MessageBoxButtons.OK, MessageBoxIcon.Information);
