@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MM_BM_Roulette
@@ -59,8 +60,6 @@ namespace MM_BM_Roulette
         string eredmeny;
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
             // játékos pénze
             txtMoney = new TextBox
             {
@@ -120,9 +119,8 @@ namespace MM_BM_Roulette
                 ForeColor = Color.Black,
                 FlatStyle = FlatStyle.Popup,
             };
-            stat.Text = $"Játékosok száma: {Players.Count + 1}";
+            stat.Text = $"Játékosok száma: {Players.Count + 1}\n";
             this.Controls.Add(stat);
-
 
             // piros gomb
             btnRed = new Button
@@ -321,7 +319,7 @@ namespace MM_BM_Roulette
             panel1 = new Panel
             {
                 Dock = DockStyle.Left,
-                BackColor = ColorTranslator.FromHtml("#ECEBEC"),
+                BackColor = ColorTranslator.FromHtml("#FFFFFF"),
                 Size = new Size(1000, 600)
             };
             this.Controls.Add(panel1);
@@ -378,9 +376,6 @@ namespace MM_BM_Roulette
             axWindowsMediaPlayer1.URL = url_kerek;
             axWindowsMediaPlayer1.Ctlcontrols.play();
             axWindowsMediaPlayer1.Visible = true;
-
-
-
             pictureBox1.Visible = false;
             
             int kifizetes;
@@ -427,6 +422,10 @@ namespace MM_BM_Roulette
             }
 
             tet = "";
+
+            StreamWriter sw = new StreamWriter("log.txt");
+            sw.Write(PlayerName + " - " + JelenlegiTet + " - " + storage[1] + "\n");
+            sw.Close();
         }
 
         private void asd(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
